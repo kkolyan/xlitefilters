@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeoECS Filters generator</title>
+    <style>
+        html {
+            font-family: monospace;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/ejs@3.0.1/ejs.min.js"></script>
+
+<body>
+<div class="container">
+    <div>
+        <label>IEnv.Query parameters count</label>
+        <input id="inc" type="number" value="4" />
+    </div>
+    <div>
+        <label>IEnv.NewEntity parameters count</label>
+        <input id="exc" type="number" value="2" />
+    </div>
+    <div>
+        <button onclick="onGenClick()">Generate</button>
+    </div>
+    <div>
+        <h3>TypedFilter.cs</h3>
+        <textarea id="TypedFilter" rows="10" cols="100" readonly wrap="off"></textarea>
+                
+        <h3>PoolSet.cs</h3>
+        <textarea id="PoolSet" rows="10" cols="100" readonly wrap="off"></textarea>
+    </div>
+</div>
+</body>
+
+<script>
+    const join = (separator, begin, end, generate) => {
+        let s = ""
+        for (let i = begin; i <= end; i++) {
+            if (i > begin) s += separator;
+            s += generate(i);
+        }
+        return s;
+    }
+    
+    const onGenClick = () => {
+        const inc = +document.getElementById('inc').value
+        const exc = +document.getElementById('exc').value
+        
+        let items = [];
+        
+        items.push({ name: "TypedFilter", tpl: `
+using Leopotam.EcsLite;
+
+namespace Kk.XLiteFilters
+{
+    public abstract class TypedFilter
+    {
+        internal TypedFilter() {}
+    }
+    
+<% for (let inc = 1; inc <= data.inc; inc++ ) { -%>
+    <% 
+    let sig = join(", ", 1, inc, (i) => "T"+i);
+    %>
+    public sealed class TypedFilter<<%=sig%>> : TypedFilter
+<% for (let i = 1; i <= inc; i++) { -%>
+            where T<%=i%> : struct
+<% } -%>
+    {
+        internal EcsFilter filter;
+                
+<% for (let i = 1; i <= inc; i++) { -%>
+        internal readonly EcsPool<T<%=i%>> pool<%=i%>;
+<% } -%>
+
+        public TypedFilter(EcsWorld world)
+        {
+            filter = world.Filter<T1>()<%=join("", 2, inc, (i) => ".Inc<T"+i+">()")%>.End();
+<% for (let i = 1; i <= inc; i++) { -%>
+            pool<%=i%> = world.GetPool<T<%=i%>>();
+<% } -%>
+        }
+
+<% for (let i = 1; i <= inc; i++) { -%>
+        public ref T<%=i%> Get<%=i%>(int entity)
+        {
+            return ref pool<%=i%>.Get(entity);
+        }
+        
+        public ref T<%=i%> Add<%=i%>(int entity)
+        {
+            return ref pool<%=i%>.Add(entity);
+        }
+
+        public bool Has<%=i%>(int entity)
+        {
+            return pool<%=i%>.Has(entity);
+        }
+
+        public void Del<%=i%>(int entity)
+        {
+            pool<%=i%>.Del(entity);
+        }
+        
+<% } -%>
+        public EcsFilter.Enumerator GetEnumerator()
+        {
+            return filter.GetEnumerator();
+        }
+    }
+<% } -%>
+}
+        `});
+        
+        items.push({ name: "PoolSet", tpl: `
+using Leopotam.EcsLite;
+
+namespace Kk.XLiteFilters
+{
+    public abstract class PoolSet
+    {
+        internal PoolSet() {}
+    }
+<% for (let inc = 1; inc <= data.inc; inc++ ) { -%>
+    <% 
+    let sig = join(", ", 1, inc, (i) => "T"+i);
+    %>
+    public class PoolSet<<%=sig%>> : PoolSet
+<% for (let i = 1; i <= inc; i++) { -%>
+            where T<%=i%> : struct
+<% } -%>
+    {
+<% for (let i = 1; i <= inc; i++) { -%>
+        internal readonly EcsPool<T<%=i%>> pool<%=i%>;
+<% } -%>
+
+        public PoolSet(EcsWorld world)
+        {
+<% for (let i = 1; i <= inc; i++) { -%>
+            pool<%=i%> = world.GetPool<T<%=i%>>();
+<% } -%>
+        }
+
+<% for (let i = 1; i <= inc; i++) { -%>
+        public ref T<%=i%> Get<%=i%>(int entity)
+        {
+            return ref pool<%=i%>.Get(entity);
+        }
+        
+        public ref T<%=i%> Add<%=i%>(int entity)
+        {
+            return ref pool<%=i%>.Add(entity);
+        }
+
+        public bool Has<%=i%>(int entity)
+        {
+            return pool<%=i%>.Has(entity);
+        }
+
+        public void Del<%=i%>(int entity)
+        {
+            pool<%=i%>.Del(entity);
+        }
+        
+<% } -%>
+    }
+<% } -%>
+}
+        `});
+
+        for (let i = 0; i < items.length; i++) {
+            document.getElementById(items[i].name).innerHTML = ejs.render(items[i].tpl, { data: { inc: inc, exc: exc } }).trim()
+        }
+    }
+</script>
+
+</html>

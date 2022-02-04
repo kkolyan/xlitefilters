@@ -1,0 +1,6 @@
+{
+    "name": "Kk.XLiteFilters",
+    "references": [
+        "Leopotam.EcsLite"
+    ]
+}

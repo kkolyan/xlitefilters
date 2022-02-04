@@ -1,0 +1,11 @@
+{
+    "name": "Kk.XLiteFilters.Test",
+    "references": [
+        "Kk.XLiteFilters",
+        "Leopotam.EcsLite",
+        "nunit.framework.dll"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ]
+}
