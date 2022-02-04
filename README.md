@@ -40,7 +40,8 @@ Do not define each individual pool to access components outside of filter
 ```c#
     private TypedFilter<A, B> _ab;
 
-    // PoolSet is just a shorthand for several pool definitions
+    // PoolSet is just a shorthand for several pool definitions. 
+    // This definition gives access for pools of C and D components (up to 8 components)
     // injected as in classic too
     private PoolSet<C, D> _cd;
 
@@ -53,6 +54,11 @@ Do not define each individual pool to access components outside of filter
             if (!_cd.Has1(entity))
             {
                 _cd.Add1(entity).value = 17;
+            }
+            // the same for D component
+            if (!_cd.Has2(entity))
+            {
+                _cd.Add2(entity).h = 17;
             }
         }
     }

@@ -13,7 +13,10 @@ namespace xlitefilters.test
         {
             public int value;
         }
-        public struct D { }
+        public struct D
+        {
+            public float h;
+        }
         
         public class SimpleIterationCase: IEcsRunSystem
         {
@@ -35,7 +38,8 @@ namespace xlitefilters.test
         {
             private TypedFilter<A, B> _ab;
 
-            // PoolSet is just a shorthand for several pool definitions
+            // PoolSet is just a shorthand for several pool definitions. 
+            // This definition gives access for pools of C and D components (up to 8 components)
             // injected as in classic too
             private PoolSet<C, D> _cd;
 
@@ -44,10 +48,15 @@ namespace xlitefilters.test
                 // iterate over entities with A and B components
                 foreach (int entity in _ab)
                 {
-                    // check if C component is also present and add it if not (positional access used as in ecs-classic)
+                    // check if C component is also present and add it if it's not present (positional access as in ecs-classic)
                     if (!_cd.Has1(entity))
                     {
                         _cd.Add1(entity).value = 17;
+                    }
+                    // the same for D component
+                    if (!_cd.Has2(entity))
+                    {
+                        _cd.Add2(entity).h = 17;
                     }
                 }
             }
