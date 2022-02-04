@@ -66,4 +66,12 @@ private TypedFilter<A, B> _anb;
 
 [WorldName("extraWorld")]
 private PoolSet<C, D> _cnd;
+
+// Yes, EcsWorld is injected too
+[WorldName("extraWorld")]
+private EcsWorld _cnd;
 ```
+
+# Plans
+
+Exclusion filter constraints.
