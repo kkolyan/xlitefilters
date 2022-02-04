@@ -33,19 +33,21 @@ namespace xlitefilters.test
         
         public class OptionalComponentsCase: IEcsRunSystem
         {
-            // injected as in classic
-            private TypedFilter<A, B> _anb;
-            // injected as in classic
-            private PoolSet<C, D> _cnd;
+            private TypedFilter<A, B> _ab;
+
+            // PoolSet is just a shorthand for several pool definitions
+            // injected as in classic too
+            private PoolSet<C, D> _cd;
 
             public void Run(EcsSystems systems)
             {
-                foreach (int entity in _anb)
+                // iterate over entities with A and B components
+                foreach (int entity in _ab)
                 {
-                    // check if C present use positional access as in ecs-classic filters
-                    if (!_cnd.Has1(entity))
+                    // check if C component is also present and add it if not (positional access used as in ecs-classic)
+                    if (!_cd.Has1(entity))
                     {
-                        _cnd.Add1(entity).value = 17;
+                        _cd.Add1(entity).value = 17;
                     }
                 }
             }

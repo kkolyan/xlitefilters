@@ -38,23 +38,24 @@ Do not define pools to access components from filter
 ### Pool sets
 Do not define each individual pool to access components outside of filter
 ```c#
+    private TypedFilter<A, B> _ab;
 
-private TypedFilter<A, B> _anb = default;
+    // PoolSet is just a shorthand for several pool definitions
+    // injected as in classic too
+    private PoolSet<C, D> _cd;
 
-// injected as in classic too
-private PoolSet<C, D> _cnd = default;
-
-public void Run(EcsSystems systems)
-{
-    foreach (int entity in _anb)
+    public void Run(EcsSystems systems)
     {
-        // check if C present use positional access as in ecs-classic filters
-        if (!_cnd.Has1(entity))
+        // iterate over entities with A and B components
+        foreach (int entity in _ab)
         {
-            _cnd.Add1(entity).value = 17;
+            // check if C component is also present and add it if it's not present (positional access as in ecs-classic)
+            if (!_cd.Has1(entity))
+            {
+                _cd.Add1(entity).value = 17;
+            }
         }
     }
-}
 ```
 
 ### Multi-world
