@@ -60,6 +60,7 @@
         let items = [];
         
         items.push({ name: "TypedFilter", tpl: `
+using System.Runtime.CompilerServices;
 using Leopotam.EcsLite;
 
 namespace Kk.XLiteFilters
@@ -93,27 +94,32 @@ namespace Kk.XLiteFilters
         }
 
 <% for (let i = 1; i <= inc; i++) { -%>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T<%=i%> Get<%=i%>(int entity)
         {
             return ref pool<%=i%>.Get(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T<%=i%> Add<%=i%>(int entity)
         {
             return ref pool<%=i%>.Add(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Has<%=i%>(int entity)
         {
             return pool<%=i%>.Has(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Del<%=i%>(int entity)
         {
             pool<%=i%>.Del(entity);
         }
         
 <% } -%>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public EcsFilter.Enumerator GetEnumerator()
         {
             return filter.GetEnumerator();
@@ -124,6 +130,7 @@ namespace Kk.XLiteFilters
         `});
         
         items.push({ name: "PoolSet", tpl: `
+using System.Runtime.CompilerServices;
 using Leopotam.EcsLite;
 
 namespace Kk.XLiteFilters
@@ -153,21 +160,25 @@ namespace Kk.XLiteFilters
         }
 
 <% for (let i = 1; i <= inc; i++) { -%>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T<%=i%> Get<%=i%>(int entity)
         {
             return ref pool<%=i%>.Get(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T<%=i%> Add<%=i%>(int entity)
         {
             return ref pool<%=i%>.Add(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Has<%=i%>(int entity)
         {
             return pool<%=i%>.Has(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Del<%=i%>(int entity)
         {
             pool<%=i%>.Del(entity);

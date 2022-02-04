@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Leopotam.EcsLite;
 
 namespace Kk.XLiteFilters
@@ -21,26 +22,31 @@ namespace Kk.XLiteFilters
             pool1 = world.GetPool<T1>();
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T1 Get1(int entity)
         {
             return ref pool1.Get(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T1 Add1(int entity)
         {
             return ref pool1.Add(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Has1(int entity)
         {
             return pool1.Has(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Del1(int entity)
         {
             pool1.Del(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public EcsFilter.Enumerator GetEnumerator()
         {
             return filter.GetEnumerator();
@@ -63,46 +69,55 @@ namespace Kk.XLiteFilters
             pool2 = world.GetPool<T2>();
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T1 Get1(int entity)
         {
             return ref pool1.Get(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T1 Add1(int entity)
         {
             return ref pool1.Add(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Has1(int entity)
         {
             return pool1.Has(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Del1(int entity)
         {
             pool1.Del(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T2 Get2(int entity)
         {
             return ref pool2.Get(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T2 Add2(int entity)
         {
             return ref pool2.Add(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Has2(int entity)
         {
             return pool2.Has(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Del2(int entity)
         {
             pool2.Del(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public EcsFilter.Enumerator GetEnumerator()
         {
             return filter.GetEnumerator();
@@ -128,66 +143,79 @@ namespace Kk.XLiteFilters
             pool3 = world.GetPool<T3>();
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T1 Get1(int entity)
         {
             return ref pool1.Get(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T1 Add1(int entity)
         {
             return ref pool1.Add(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Has1(int entity)
         {
             return pool1.Has(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Del1(int entity)
         {
             pool1.Del(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T2 Get2(int entity)
         {
             return ref pool2.Get(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T2 Add2(int entity)
         {
             return ref pool2.Add(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Has2(int entity)
         {
             return pool2.Has(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Del2(int entity)
         {
             pool2.Del(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T3 Get3(int entity)
         {
             return ref pool3.Get(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T3 Add3(int entity)
         {
             return ref pool3.Add(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Has3(int entity)
         {
             return pool3.Has(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Del3(int entity)
         {
             pool3.Del(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public EcsFilter.Enumerator GetEnumerator()
         {
             return filter.GetEnumerator();
@@ -216,86 +244,103 @@ namespace Kk.XLiteFilters
             pool4 = world.GetPool<T4>();
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T1 Get1(int entity)
         {
             return ref pool1.Get(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T1 Add1(int entity)
         {
             return ref pool1.Add(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Has1(int entity)
         {
             return pool1.Has(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Del1(int entity)
         {
             pool1.Del(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T2 Get2(int entity)
         {
             return ref pool2.Get(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T2 Add2(int entity)
         {
             return ref pool2.Add(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Has2(int entity)
         {
             return pool2.Has(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Del2(int entity)
         {
             pool2.Del(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T3 Get3(int entity)
         {
             return ref pool3.Get(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T3 Add3(int entity)
         {
             return ref pool3.Add(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Has3(int entity)
         {
             return pool3.Has(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Del3(int entity)
         {
             pool3.Del(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T4 Get4(int entity)
         {
             return ref pool4.Get(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ref T4 Add4(int entity)
         {
             return ref pool4.Add(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Has4(int entity)
         {
             return pool4.Has(entity);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Del4(int entity)
         {
             pool4.Del(entity);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public EcsFilter.Enumerator GetEnumerator()
         {
             return filter.GetEnumerator();
