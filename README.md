@@ -51,7 +51,7 @@ public void Run(EcsSystems systems)
         // check if C present use positional access as in ecs-classic filters
         if (!_cnd.Has1(entity))
         {
-            _cnd.Add1(entity) = new C();
+            _cnd.Add1(entity).value = 17;
         }
     }
 }

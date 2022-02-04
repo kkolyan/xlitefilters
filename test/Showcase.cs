@@ -8,7 +8,11 @@ namespace xlitefilters.test
     {
         public struct A { }
         public struct B { }
-        public struct C { }
+
+        public struct C
+        {
+            public int value;
+        }
         public struct D { }
         
         public class SimpleIterationCase: IEcsRunSystem
@@ -41,7 +45,7 @@ namespace xlitefilters.test
                     // check if C present use positional access as in ecs-classic filters
                     if (!_cnd.Has1(entity))
                     {
-                        _cnd.Add1(entity) = new C();
+                        _cnd.Add1(entity).value = 17;
                     }
                 }
             }
