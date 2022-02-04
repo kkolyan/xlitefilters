@@ -2,6 +2,8 @@
 
 Extension for [LeoECS Lite](https://github.com/Leopotam/ecslite) for a [LeoECS Classic](https://github.com/Leopotam/ecs)-style filters.
 
+Actually, that's almost the same as [extendedfilters](https://github.com/Leopotam/ecslite-extendedfilters)
+
 # How to use
 
 ### Setup
